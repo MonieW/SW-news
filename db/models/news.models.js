@@ -8,6 +8,6 @@ exports.selectTopics= ()=> {
     })
 }
 
-exports.selectEndpoints = () => {
+//exports.selectEndpoints = () => {
 
-}
+//}

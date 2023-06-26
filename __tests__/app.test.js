@@ -26,7 +26,7 @@ describe('GET /api/topics', () => {
             }) 
         })
     })
-    describe('GET /api/', () => {
+    describe.skip('GET /api/', () => {
         it('responds with a status of 200, and an object containing all endpoints', () => {
 
         })
