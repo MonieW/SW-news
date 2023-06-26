@@ -7,3 +7,7 @@ exports.selectTopics= ()=> {
         return rows
     })
 }
+
+exports.selectEndpoints = () => {
+
+}

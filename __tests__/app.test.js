@@ -26,4 +26,9 @@ describe('GET /api/topics', () => {
             }) 
         })
     })
+    describe('GET /api/', () => {
+        it('responds with a status of 200, and an object containing all endpoints', () => {
+
+        })
+    }) 
 })
