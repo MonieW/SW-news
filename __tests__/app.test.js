@@ -3,6 +3,7 @@ const app = require('../db/app');
 const seed = require('../db/seeds/seed');
 const testdata = require('../db/data/test-data');
 const db = require('../db/connection')
+const fs = require('fs/promises')
 
 beforeEach(() => {
     return seed(testdata)
@@ -26,9 +27,19 @@ describe('GET /api/topics', () => {
             }) 
         })
     })
-    describe.skip('GET /api/', () => {
+    describe('GET /api/', () => {
         it('responds with a status of 200, and an object containing all endpoints', () => {
+            return request(app)
+            .get('/api/')
+            .expect(200)
+            .then(({body}) => {
+                fs.readFile('./endpoints.json', 'utf8')
+                .then((endpoints) => {
+                   expect(body).toMatchObject(JSON.parse(endpoints))
+                })  
+                })
+            })
 
         })
     }) 
-})
+
