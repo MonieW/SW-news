@@ -22,7 +22,7 @@ exports.fetchArticlesById = (article_id) => {
             return Promise.reject({status: 404, msg: `id not found`
         })
     }
-    console.log(rows[0])
+   
     return rows[0]
 })
 }
