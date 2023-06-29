@@ -113,3 +113,63 @@ describe("GET /api/`articles", () => {
       });
   });
 });
+describe("GET/api/articles/:article_id/comments", ()=> {
+    it('responds with a status 200, and an array containing all comments with correct properties matching the id input', () => {
+        return request(app)
+        .get("/api/articles/1/comments")
+        .expect(200)
+        .then(({body}) => {
+            expect(body.comments).toHaveLength(11);
+            body.comments.forEach((comment) => {
+            expect(comment).toMatchObject({
+            comment_id: expect.any(Number),
+            votes: expect.any(Number),
+            created_at: expect.any(String),
+            author: expect.any(String),
+            body: expect.any(String),
+            article_id: 1,
+
+            })
+        })
+    })
+})
+})
+describe("GET /api/:article_id/comments", () => {
+it("responds with a status of 200, and an array containing all article objects sorted with most recent comments first, i.e in descending date order", () => {
+      return request(app) // arrange
+         .get("/api/articles/1/comments") // act
+         .expect(200) // assert
+         .then(({ body }) => {
+          expect(body.comments).toBeSortedBy("created_at", { descending: true });
+         });
+    });
+   });
+   describe("GET /api/2/comments", () => {
+    it("responds with a status of 200, and a response message if requested id is valid BUT article has no comments", () => {
+          return request(app) // arrange
+             .get("/api/articles/2/comments") // act
+             .expect(200) // assert
+             .then(({ body }) => {
+              expect(body.comments).toEqual([]);
+             });
+        });
+       });
+ describe("ERRORS for GET /api/articles/2/comments ", () => {
+     it("status:400, responds with an error message when passed an invalid user ID", () => {
+       return request(app)
+         .get("/api/articles/notAnId/comments")
+         .expect(400)
+         .then(({ body }) => {
+           expect(body.msg).toBe("invalid input");         
+        });
+     });
+   });
+   it("status:404, responds with an error message when passed an id that doesn/t exist", () => {
+    return request(app)
+       .get("/api/articles/50/comments")
+       .expect(404)
+       .then(({ body }) => {
+         expect(body.msg).toBe("id not found");
+       });
+   });
+ 
