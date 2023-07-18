@@ -1,8 +1,11 @@
 const{getTopics, getEndpoints} = require('./controllers/news.controllers.js')
-const{getArticlesById, getArticles} = require('./controllers/articles.controllers')
-const{getComments, postComment} = require('./controllers/comments.controllers')
+const{getArticlesById, getArticles, patchArticle} = require('./controllers/articles.controllers')
+const{getComments, postComment, deleteComment} = require('./controllers/comments.controllers')
 const express = require('express')
 const app = express()
+const cors = require('cors')
+
+app.use(cors());
 
 app.use(express.json());
 
@@ -18,6 +21,10 @@ app.get('/api/articles', getArticles)
 app.get('/api/articles/:article_id/comments', getComments)
 
 app.post('/api/articles/:article_id/comments', postComment)
+
+app.patch('/api/articles/:article_id', patchArticle )
+
+app.delete('api/comments/:comment_id', deleteComment)
 
 
 //errors

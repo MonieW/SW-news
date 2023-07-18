@@ -55,11 +55,47 @@
         "article_id": 9,
         "created_at": 1586179020000
       }
-    ]
-       
+    ]   
         }
-    }
+    },
+  "POST /api/:article_id/comments": {
+    "description": "serves an array of updated comments of specified id",
+    "queries": {},
+    "exampleResponse": {
+      "comments": [
+        {"body": "This is a wonderful article!",
+        "votes": 16,
+        "author": "butter_bridge",
+        "article_id": 1,
+        "created_at": 1586179020000
+        }
+      ]  
   }
+  },
+"PATCH /api/:article_id": {
+  "description": "serves an object of updated votes for specified id",
+  "queries": {},
+  "exampleResponse": {
+    "comments": [
+      {"body": "This is a wonderful article!",
+      "votes": 16,
+      "author": "butter_bridge",
+      "article_id": 1,
+      "created_at": 1586179020000
+    }
+  ]
+}
+}
+}
+
+
+
+
+
+
+
+
+
   
 
 

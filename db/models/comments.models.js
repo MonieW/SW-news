@@ -23,8 +23,18 @@ exports.insertComment = (newComment, article_id) => {
     const{body, author} = newComment
     return db
     .query('INSERT INTO comments (body, author, article_id) VALUES ($1, $2, $3) RETURNING *;',[body, author, article_id])
+
     .then(({rows}) => {
         return rows[0];
      })
+}
+exports.removeComment = (comment_id) => {
+    console.log(comment_id, '< COMMENT')
+    return db
+    .query('DELETE FROM comments WHERE comment_id = $1 RETURNING *;', [comment_id])
+    .then(({rows}) => {
+console.log(rows, '<<ROWS')
+        return rows;
+    })
 }
 

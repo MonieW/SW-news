@@ -1,4 +1,5 @@
 const db = require("../connection.js");
+const articles = require("../data/test-data/articles.js");
 
 
 exports.fetchArticlesById = (article_id) => {
@@ -29,3 +30,15 @@ exports.fetchArticlesById = (article_id) => {
       return rows;
       });
   };
+  exports.updateArticle = (newVote, article_id) => {
+    const {inc_votes} = newVote
+    return db
+    .query (`UPDATE articles SET votes = votes + $1 WHERE article_id = $2 RETURNING *;`,[inc_votes, article_id],
+  
+      )
+      .then (({rows}) => {
+        return rows[0]
+      })
+     
+   
+  }
