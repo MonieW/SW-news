@@ -332,22 +332,22 @@ describe("Errors for PATCH /api/articles/:artices_id", () => {
   });
 });
 //FAILING TO FAIL
-// describe("Errors for PATCH /api/articles/:artices_id", () => {
-//   it("status:404, article id which doesnt exist", () => {
-//     const newVote = {
-//       inc_votes: 1,
-//     };
-//     return (
-//       request(app)
-//       .patch("/api/articles/999")
-//       .send(newVote)
-//       .expect(404)
-//       .then(({ body }) => {
-//         expect(body.msg).toBe("not found");
-//       })
-//     )
-//   });
-// });
+describe("Errors for PATCH /api/articles/:artices_id", () => {
+  it("status:404, article id which doesnt exist", () => {
+    const newVote = {
+      inc_votes: 1,
+    };
+    return (
+      request(app)
+      .patch("/api/articles/999")
+      .send(newVote)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("id not found");
+      })
+    )
+  });
+});
 
 //DELETE
 // describe("DELETE /api/comments/:comment_id", () => {
